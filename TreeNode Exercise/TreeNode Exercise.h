@@ -38,13 +38,27 @@ void InOrderTraverse(TreeNode *root) {
 		return;
 	}
 }
-
-
-
-
-
-
-
-
-
+//Calculate the height of the tree
+int LayerCount(TreeNode *root) {
+	if (root == nullptr) {
+		return 0;
+	}
+	int left = LayerCount(root->left);
+	int right = LayerCount(root->right);
+	if (left >= right) {
+		return left + 1;
+	}
+	else {
+		return right + 1;
+	}
+}
+//Reverse the binary tree
+void ReverseTree(TreeNode *root) {
+	if (root == nullptr) return;
+	TreeNode *temp = root->left;
+	root->left = root->right;
+	root->right = temp;
+	ReverseTree(root->left);
+	ReverseTree(root->right);
+}
 #endif
